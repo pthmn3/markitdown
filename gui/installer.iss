@@ -67,7 +67,7 @@ Name: "installmarkitdown"; Description: "Install markitdown Python package and d
 Source: "dist\MarkItDown Desktop\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; Python installer (embedded for offline installation)
-Source: "redist\python-3.12*.exe"; DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall; Tasks: installpython
+Source: "redist\python-3.12*.exe"; DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall skipifsourcedoesntexist; Tasks: installpython
 
 ; pip requirements for markitdown
 Source: "requirements_install.txt"; DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall; Tasks: installmarkitdown
