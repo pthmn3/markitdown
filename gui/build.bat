@@ -1,17 +1,17 @@
 @echo off
-REM ╔═══════════════════════════════════════════════════════════════════╗
-REM ║  MarkItDown Desktop — Windows Build Script                        ║
-REM ║                                                                   ║
-REM ║  This script builds the .exe and creates the installer.           ║
-REM ║                                                                   ║
-REM ║  Prerequisites:                                                   ║
-REM ║    1. Python 3.10+ with pip                                       ║
-REM ║    2. Inno Setup 6+ (for installer; optional)                     ║
-REM ║                                                                   ║
-REM ║  Usage:                                                           ║
-REM ║    build.bat              Build .exe only                         ║
-REM ║    build.bat installer    Build .exe + installer                  ║
-REM ╚═══════════════════════════════════════════════════════════════════╝
+REM ================================================================
+REM  MarkItDown Desktop - Windows Build Script
+REM
+REM  This script builds the .exe and creates the installer.
+REM
+REM  Prerequisites:
+REM    1. Python 3.10+ with pip
+REM    2. Inno Setup 6+ (for installer; optional)
+REM
+REM  Usage:
+REM    build.bat              Build .exe only
+REM    build.bat installer    Build .exe + installer
+REM ================================================================
 
 setlocal enabledelayedexpansion
 
@@ -21,7 +21,7 @@ echo    MarkItDown Desktop -- Build System
 echo  ============================================
 echo.
 
-REM ── Step 1: Check Python ──
+REM -- Step 1: Check Python --
 echo [1/6] Checking Python installation...
 python --version
 if errorlevel 1 (
@@ -32,7 +32,7 @@ if errorlevel 1 (
 echo       OK
 echo.
 
-REM ── Step 2: Install build dependencies ──
+REM -- Step 2: Install build dependencies --
 echo [2/6] Installing build dependencies (pyinstaller, ttkbootstrap)...
 python -m pip install pyinstaller ttkbootstrap
 if errorlevel 1 (
@@ -41,7 +41,7 @@ if errorlevel 1 (
 echo       OK
 echo.
 
-REM ── Step 3: Install markitdown with all optional deps ──
+REM -- Step 3: Install markitdown with all optional deps --
 echo [3/6] Installing markitdown[all]...
 echo       This downloads many packages (PDF, Office, audio, etc.)
 echo       It may take 2-5 minutes. Please wait...
@@ -59,7 +59,7 @@ cd /d "%~dp0"
 echo       OK
 echo.
 
-REM ── Step 4: Create assets directory ──
+REM -- Step 4: Create assets directory --
 echo [4/6] Preparing assets...
 if not exist "assets" mkdir assets
 if not exist "assets\icon.ico" (
@@ -69,7 +69,7 @@ if not exist "assets\icon.ico" (
 echo       OK
 echo.
 
-REM ── Step 5: Build with PyInstaller ──
+REM -- Step 5: Build with PyInstaller --
 echo [5/6] Building executable with PyInstaller...
 echo       This may take several minutes...
 echo.
@@ -84,7 +84,7 @@ echo.
 echo       Build complete: dist\MarkItDown Desktop\
 echo.
 
-REM ── Step 6: Build installer (optional) ──
+REM -- Step 6: Build installer (optional) --
 if /i "%1"=="installer" (
     echo [6/6] Building installer with Inno Setup...
 
