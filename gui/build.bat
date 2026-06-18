@@ -16,14 +16,14 @@ REM ╚════════════════════════�
 setlocal enabledelayedexpansion
 
 echo.
-echo  ╔══════════════════════════════════════════╗
-echo  ║   MarkItDown Desktop — Build System      ║
-echo  ╚══════════════════════════════════════════╝
+echo  ============================================
+echo    MarkItDown Desktop -- Build System
+echo  ============================================
 echo.
 
 REM ── Step 1: Check Python ──
 echo [1/6] Checking Python installation...
-python --version 2>nul
+python --version
 if errorlevel 1 (
     echo ERROR: Python is not installed or not in PATH.
     echo Please install Python 3.10+ from https://python.org
@@ -33,8 +33,8 @@ echo       OK
 echo.
 
 REM ── Step 2: Install build dependencies ──
-echo [2/6] Installing build dependencies...
-pip install pyinstaller ttkbootstrap --quiet 2>nul
+echo [2/6] Installing build dependencies (pyinstaller, ttkbootstrap)...
+pip install pyinstaller ttkbootstrap
 if errorlevel 1 (
     echo WARNING: Some build dependencies may have failed to install.
 )
@@ -43,11 +43,17 @@ echo.
 
 REM ── Step 3: Install markitdown with all optional deps ──
 echo [3/6] Installing markitdown[all]...
+echo       This downloads many packages (PDF, Office, audio, etc.)
+echo       It may take 2-5 minutes. Please wait...
+echo.
 cd /d "%~dp0.."
-pip install -e "packages/markitdown[all]" --quiet 2>nul
+pip install -e "packages/markitdown[all]"
 if errorlevel 1 (
+    echo.
     echo WARNING: Some markitdown dependencies may have failed.
     echo          The build will continue, but some converters may not work.
+    echo          You can also try: pip install markitdown[all]
+    echo.
 )
 cd /d "%~dp0"
 echo       OK
@@ -57,7 +63,7 @@ REM ── Step 4: Create assets directory ──
 echo [4/6] Preparing assets...
 if not exist "assets" mkdir assets
 if not exist "assets\icon.ico" (
-    echo       Generating placeholder icon...
+    echo       Generating app icon...
     python generate_icon.py
 )
 echo       OK
@@ -127,9 +133,9 @@ if /i "%1"=="installer" (
 )
 
 echo.
-echo  ╔══════════════════════════════════════════╗
-echo  ║   Build Complete!                         ║
-echo  ╚══════════════════════════════════════════╝
+echo  ============================================
+echo    Build Complete!
+echo  ============================================
 echo.
 echo  Executable: dist\MarkItDown Desktop\MarkItDown Desktop.exe
 echo.
