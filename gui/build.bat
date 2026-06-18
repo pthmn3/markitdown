@@ -34,7 +34,7 @@ echo.
 
 REM ── Step 2: Install build dependencies ──
 echo [2/6] Installing build dependencies (pyinstaller, ttkbootstrap)...
-pip install pyinstaller ttkbootstrap
+python -m pip install pyinstaller ttkbootstrap
 if errorlevel 1 (
     echo WARNING: Some build dependencies may have failed to install.
 )
@@ -47,7 +47,7 @@ echo       This downloads many packages (PDF, Office, audio, etc.)
 echo       It may take 2-5 minutes. Please wait...
 echo.
 cd /d "%~dp0.."
-pip install -e "packages/markitdown[all]"
+python -m pip install -e "packages/markitdown[all]"
 if errorlevel 1 (
     echo.
     echo WARNING: Some markitdown dependencies may have failed.
@@ -73,7 +73,7 @@ REM ── Step 5: Build with PyInstaller ──
 echo [5/6] Building executable with PyInstaller...
 echo       This may take several minutes...
 echo.
-pyinstaller markitdown_desktop.spec --clean --noconfirm
+python -m PyInstaller markitdown_desktop.spec --clean --noconfirm
 if errorlevel 1 (
     echo.
     echo ERROR: PyInstaller build failed!
