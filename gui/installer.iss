@@ -60,7 +60,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "installpython"; Description: "Install Python 3.12 (required if Python is not already installed)"; GroupDescription: "Prerequisites:"; Flags: unchecked
-Name: "installmarkitdown"; Description: "Install markitdown Python package and dependencies"; GroupDescription: "Prerequisites:"; Flags: checked
+Name: "installmarkitdown"; Description: "Install markitdown Python package and dependencies"; GroupDescription: "Prerequisites:"
 
 [Files]
 ; Main application (PyInstaller output)
