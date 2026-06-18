@@ -1,0 +1,4 @@
+# Requirements for the MarkItDown Desktop installer
+# These are installed via pip during the installation process
+markitdown[all]
+ttkbootstrap>=1.10.0
